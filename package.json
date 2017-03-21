@@ -1,0 +1,21 @@
+{
+  "name": "Electron-PDF-Viewer",
+  "version": "1.0.0",
+  "description": "A pdf viewer built with electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/praharshjain/Electron-PDF-Viewer",
+  "keywords": [
+    "Electron",
+    "PDF",
+    "viewer",
+    "PDF.js"
+  ],
+  "author": "Praharsh Jain",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  }
+}
