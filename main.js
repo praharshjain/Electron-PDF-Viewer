@@ -1,4 +1,3 @@
-'use strict';
 const electron = require('electron');
 const fspath = require('path');
 const url = require('url');
@@ -171,8 +170,6 @@ if (shouldQuit) { app.quit(); return; }
 app.on('ready', function () {
   splashwindow = new BrowserWindow({ width: 400, height: 300, icon: __dirname + 'icon.png', center: true, resizable: false, movable: false, alwaysOnTop: true, skipTaskbar: true, frame: false });
   splashwindow.loadURL('file://' + __dirname + '/splash.html');
-  onlineStatusWindow = new BrowserWindow({ width: 0, height: 0, icon: __dirname + 'icon.png', show: false });
-  //onlineStatusWindow.loadURL('file://' + __dirname + '/online-status.html',options);
   //for OS-X
   if (app.dock) { app.dock.setIcon('icon.png'); app.dock.setMenu(contextMenu); }
   const appIcon = new Tray('icon.png');
