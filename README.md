@@ -21,10 +21,6 @@ $ cd Electron-PDF-Viewer
 $ npm install && npm start
 ```
 
-Screenshot
-----------------
-<img src="https://github.com/praharshjain/Electron-PDF-Viewer/blob/master/screenshot.png">
-  
 License
 ----------------
 [PDF.js](https://github.com/mozilla/pdf.js) is available under  Apache License.  

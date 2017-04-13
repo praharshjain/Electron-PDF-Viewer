@@ -11,8 +11,8 @@ const crashReporter = electron.crashReporter;
 const BrowserWindow = electron.BrowserWindow;
 const nativeImage = require('electron').nativeImage;
 const options = { extraHeaders: 'pragma: no-cache\n' }
-let app_icon = nativeImage.createFromPath(fspath.join(__dirname, 'icon.png'));
-let mainWindow, splashwindow, onlineStatusWindow;
+const app_icon = nativeImage.createFromPath(fspath.join(__dirname, 'icon.ico'));
+let mainWindow, splashwindow;
 var contextMenu = null;
 var filepath = null;
 var quitapp, URL;
@@ -85,9 +85,7 @@ var template = [
       { label: 'Undo', accelerator: 'CmdOrCtrl+Z', role: 'undo' },
       { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', role: 'redo' },
       { type: 'separator' },
-      { label: 'Cut', accelerator: 'CmdOrCtrl+X', role: 'cut' },
       { label: 'Copy', accelerator: 'CmdOrCtrl+C', role: 'copy' },
-      { label: 'Paste', accelerator: 'CmdOrCtrl+V', role: 'paste' },
       { label: 'Select All', accelerator: 'CmdOrCtrl+A', role: 'selectall' },
     ]
   },
@@ -165,14 +163,12 @@ var shouldQuit = app.makeSingleInstance(function (commandLine, workingDirectory)
   }
 });
 if (shouldQuit) { app.quit(); return; }
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
 app.on('ready', function () {
-  splashwindow = new BrowserWindow({ width: 400, height: 300, icon: __dirname + 'icon.png', center: true, resizable: false, movable: false, alwaysOnTop: true, skipTaskbar: true, frame: false });
+  splashwindow = new BrowserWindow({ width: 400, height: 300, center: true, resizable: false, movable: false, alwaysOnTop: true, skipTaskbar: true, frame: false });
   splashwindow.loadURL('file://' + __dirname + '/splash.html');
   //for OS-X
-  if (app.dock) { app.dock.setIcon('icon.png'); app.dock.setMenu(contextMenu); }
-  const appIcon = new Tray('icon.png');
+  if (app.dock) { app.dock.setIcon(app_icon); app.dock.setMenu(contextMenu); }
+  const appIcon = new Tray(app_icon);
   contextMenu = Menu.buildFromTemplate([
     { label: 'Minimize', type: 'radio', role: 'minimize' },
     { type: 'separator' },
@@ -194,7 +190,7 @@ app.on('activate', function () {
 });
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 800, height: 600, show: false, icon: __dirname + 'icon.png', webPreferences: { nodeIntegration: false, defaultEncoding: 'UTF-8' } });
+  mainWindow = new BrowserWindow({ width: 800, height: 600, show: false, icon: app_icon, webPreferences: { nodeIntegration: false, defaultEncoding: 'UTF-8' } });
   mainWindow.on('close', function (e) {
     e.preventDefault();
     mainWindow.webContents.clearHistory();
