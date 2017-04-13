@@ -1,4 +1,4 @@
-Electron-PDF-Viewer
+<img src="https://github.com/praharshjain/Electron-PDF-Viewer/blob/master/icon.ico" width="40">&nbsp;&nbsp;Electron-PDF-Viewer
 ==========  
 
 PDF viewer created using [Electron framework](https://electron.atom.io) and [PDF.js](https://mozilla.github.io/pdf.js)  
