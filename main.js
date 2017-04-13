@@ -127,7 +127,19 @@ var template = [
     label: 'Help',
     role: 'help',
     submenu: [
-      { label: 'Learn More', click: function () { shell.openExternal('http://electron.atom.io'); } },
+      { label: 'About', click: function ()
+        {
+          dialog.showMessageBox(mainWindow,
+          { type: 'info',
+            buttons: ['OK'],
+            title: 'Electron PDF Viewer 1.0',
+            message: 'Version 1.0',
+            detail: 'Created By - Praharsh Jain',
+            icon: app_icon
+          });
+        }
+      },
+      { label: 'Learn More', click: function () { shell.openExternal('https://github.com/praharshjain/Electron-PDF-Viewer'); } },
     ]
   },
 ];
