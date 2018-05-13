@@ -175,17 +175,17 @@ if (shouldQuit) { app.quit(); return; }
 app.on('ready', function() {
     splashwindow = new BrowserWindow({ width: 400, height: 300, center: true, resizable: false, movable: false, alwaysOnTop: true, skipTaskbar: true, frame: false });
     splashwindow.loadURL('file://' + __dirname + '/splash.html');
+    contextMenu = Menu.buildFromTemplate([
+        { label: 'Minimize', type: 'radio', role: 'minimize' },
+        { type: 'separator' },
+        { label: 'Exit', type: 'radio', role: 'close' },
+    ]);
     //for OS-X
     if (app.dock) {
         app.dock.setIcon(app_icon);
         app.dock.setMenu(contextMenu);
     }
     const appIcon = new Tray(app_icon);
-    contextMenu = Menu.buildFromTemplate([
-        { label: 'Minimize', type: 'radio', role: 'minimize' },
-        { type: 'separator' },
-        { label: 'Exit', type: 'radio', role: 'close' },
-    ]);
     appIcon.setToolTip('PDF Viewer');
     appIcon.setContextMenu(contextMenu);
     //splash screen for 3 seconds
