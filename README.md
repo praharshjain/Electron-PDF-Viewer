@@ -5,6 +5,11 @@ PDF viewer created using [Electron framework](https://electron.atom.io) and [PDF
 
 Usage
 ----------------
+
+Download executable jar from [Releases](https://github.com/praharshjain/Electron-PDF-Viewer/releases)
+
+Or build from source :
+
 Install dependencies (Node.js, npm etc) -
 ```
 $ sudo apt-get install python-software-properties
