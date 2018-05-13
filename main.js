@@ -144,7 +144,7 @@ var template = [{
     },
 ];
 if (process.platform == 'darwin') {
-    var name = electron.remote.app.getName();
+    var name = 'Electron PDF Viewer';
     template.unshift({
         label: name,
         submenu: [
