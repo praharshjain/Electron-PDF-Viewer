@@ -25,7 +25,7 @@ function sleep(millis) {
 }
 crashReporter.start({ productName: 'Electron PDF Viewer', companyName: 'Praharsh', submitURL: 'https://praharsh.xyz/projects/PDFViewer/crash', autoSubmit: false });
 //creating menus for menu bar
-var template = [{
+const template = [{
         label: 'File',
         submenu: [{
                 label: 'Open',
@@ -143,27 +143,7 @@ var template = [{
         ]
     },
 ];
-if (process.platform == 'darwin') {
-    var name = 'Electron PDF Viewer';
-    template.unshift({
-        label: name,
-        submenu: [
-            { label: 'About ' + name, role: 'about' },
-            { type: 'separator' },
-            { label: 'Services', role: 'services', submenu: [] },
-            { type: 'separator' },
-            { label: 'Hide ' + name, accelerator: 'Command+H', role: 'hide' },
-            { label: 'Hide Others', accelerator: 'Command+Alt+H', role: 'hideothers' },
-            { label: 'Show All', role: 'unhide' },
-            { type: 'separator' },
-            { label: 'Quit', accelerator: 'Command+Q', click: function() { app.quit(); } },
-        ]
-    });
-    // Window menu.
-    template[3].submenu.push({ type: 'separator' }, { label: 'Bring All to Front', role: 'front' });
-}
 var menu = Menu.buildFromTemplate(template);
-Menu.setApplicationMenu(menu);
 var shouldQuit = app.makeSingleInstance(function(commandLine, workingDirectory) {
     // Someone tried to run a second instance, we should focus our window.
     if (mainWindow) {
@@ -185,6 +165,7 @@ app.on('ready', function() {
         app.dock.setIcon(app_icon);
         app.dock.setMenu(contextMenu);
     }
+    Menu.setApplicationMenu(menu);
     const appIcon = new Tray(app_icon);
     appIcon.setToolTip('PDF Viewer');
     appIcon.setContextMenu(contextMenu);
