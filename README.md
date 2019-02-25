@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpraharshjain%2FElectron-PDF-Viewer.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpraharshjain%2FElectron-PDF-Viewer?ref=badge_shield)
+
 <img src="https://github.com/praharshjain/Electron-PDF-Viewer/blob/master/icon.ico" width="40">&nbsp;&nbsp;Electron-PDF-Viewer
 ==========  
 
@@ -34,3 +36,7 @@ License
 [PDF.js](https://github.com/mozilla/pdf.js) is available under  Apache License.  
 [Electron](https://github.com/electron/electron) is released under MIT License.  
 Rest of the code is MIT licensed.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpraharshjain%2FElectron-PDF-Viewer.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpraharshjain%2FElectron-PDF-Viewer?ref=badge_large)
