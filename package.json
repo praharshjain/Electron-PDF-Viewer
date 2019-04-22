@@ -16,6 +16,6 @@
   "author": "Praharsh Jain",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^2.0.1"
+    "electron": "^4.1.4"
   }
 }

@@ -12,6 +12,7 @@ const BrowserWindow = electron.BrowserWindow;
 const nativeImage = require('electron').nativeImage;
 const options = { extraHeaders: 'pragma: no-cache\n' }
 const app_icon = nativeImage.createFromPath(fspath.join(__dirname, 'icon.ico'));
+const singleInstanceLock = app.requestSingleInstanceLock();
 let mainWindow, splashwindow;
 var contextMenu = null;
 var filepath = null;
@@ -144,14 +145,21 @@ const template = [{
     },
 ];
 var menu = Menu.buildFromTemplate(template);
-var shouldQuit = app.makeSingleInstance(function(commandLine, workingDirectory) {
-    // Someone tried to run a second instance, we should focus our window.
-    if (mainWindow) {
-        if (mainWindow.isMinimized()) mainWindow.restore();
-        mainWindow.focus();
-    }
-});
-if (shouldQuit) { app.quit(); return; }
+if (!singleInstanceLock) {
+    app.quit();
+    return;
+} else {
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+        // Someone tried to run a second instance, we should focus our window.
+        if (mainWindow) {
+            if (mainWindow.isMinimized()) {
+                mainWindow.restore();
+            }
+            mainWindow.focus();
+        }
+    });
+}
+
 app.on('ready', function() {
     splashwindow = new BrowserWindow({ width: 400, height: 300, center: true, resizable: false, movable: false, alwaysOnTop: true, skipTaskbar: true, frame: false });
     splashwindow.loadURL('file://' + __dirname + '/splash.html');
