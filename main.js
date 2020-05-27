@@ -1,12 +1,10 @@
 const electron = require('electron');
 const fspath = require('path');
-const url = require('url');
 const app = electron.app;
 const shell = electron.shell;
 const Menu = electron.Menu;
 const Tray = electron.Tray;
 const dialog = electron.dialog;
-const ipcMain = electron.ipcMain;
 const crashReporter = electron.crashReporter;
 const BrowserWindow = electron.BrowserWindow;
 const nativeImage = require('electron').nativeImage;
@@ -16,14 +14,7 @@ const singleInstanceLock = app.requestSingleInstanceLock();
 let mainWindow, splashwindow;
 var contextMenu = null;
 var filepath = null;
-var quitapp, URL;
 
-function sleep(millis) {
-    var date = new Date();
-    var curDate = null;
-    do { curDate = new Date(); }
-    while (curDate - date < millis);
-}
 crashReporter.start({ productName: 'Electron PDF Viewer', companyName: 'Praharsh', submitURL: 'https://praharsh.xyz/projects/PDFViewer/crash', autoSubmit: false });
 //creating menus for menu bar
 const template = [{
