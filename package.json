@@ -17,6 +17,6 @@
   "license": "MIT",
   "devDependencies": {
     "minimist": "^1.2.3",
-    "electron": "^6.1.12"
+    "electron": "^7.2.4"
   }
 }
