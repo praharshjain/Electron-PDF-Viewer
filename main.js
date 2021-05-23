@@ -8,14 +8,21 @@ const dialog = electron.dialog;
 const crashReporter = electron.crashReporter;
 const BrowserWindow = electron.BrowserWindow;
 const nativeImage = require('electron').nativeImage;
-const options = { extraHeaders: 'pragma: no-cache\n' }
-const app_icon = nativeImage.createFromPath(fspath.join(__dirname, 'icon.ico'));
+const options = { extraHeaders: 'pragma: no-cache\n' };
+const appName = 'Electron PDF Viewer';
+const appVersion = '1.0';
+const copyrightInfo = '';
+const author = 'Praharsh Jain';
+const website = 'https://praharsh.tech';
+const iconPath = fspath.join(__dirname, 'icon.png');
+const appIcon = nativeImage.createFromPath(iconPath);
+const trayIcon = appIcon.resize({ width: 20, height: 20 });
 const singleInstanceLock = app.requestSingleInstanceLock();
 let mainWindow, splashwindow;
 let contextMenu = null;
 let filepath = null;
 
-crashReporter.start({ productName: 'Electron PDF Viewer', companyName: 'Praharsh', submitURL: 'https://praharsh.tech/projects/PDFViewer/crash', autoSubmit: false });
+crashReporter.start({ productName: appName, companyName: author, submitURL: website, autoSubmit: false });
 //creating menus for menu bar
 const template = [{
     label: 'File',
@@ -98,7 +105,7 @@ const template = [{
     {
         label: 'Toggle Full Screen',
         accelerator: (function () {
-            if (process.platform == 'darwin')
+            if (isOSX())
                 return 'Ctrl+Command+F';
             else
                 return 'F11';
@@ -126,10 +133,10 @@ const template = [{
             dialog.showMessageBox(mainWindow, {
                 type: 'info',
                 buttons: ['OK'],
-                title: 'Electron PDF Viewer 1.0',
-                message: 'Version 1.0',
-                detail: 'Created By - Praharsh Jain',
-                icon: app_icon
+                title: appName,
+                message: 'Version ' + appVersion,
+                detail: 'Created By - ' + author,
+                icon: appIcon
             });
         }
     },
@@ -137,7 +144,9 @@ const template = [{
     ]
 },
 ];
-var menu = Menu.buildFromTemplate(template);
+app.setAboutPanelOptions({ applicationName: appName, applicationVersion: appVersion, copyright: copyrightInfo, version: appVersion, credits: author, authors: [author], website: website, iconPath: iconPath });
+app.setName(appName);
+const menu = Menu.buildFromTemplate(template);
 if (!singleInstanceLock) {
     app.quit();
     return;
@@ -154,26 +163,30 @@ if (!singleInstanceLock) {
 }
 
 app.on('ready', function () {
-    splashwindow = new BrowserWindow({ width: 400, height: 300, center: true, resizable: false, movable: false, alwaysOnTop: true, skipTaskbar: true, frame: false });
+    splashwindow = new BrowserWindow({ accessibleTitle: appName, title: appName, icon: appIcon, width: 400, height: 300, center: true, resizable: false, movable: false, alwaysOnTop: true, skipTaskbar: true, frame: false });
+    splashwindow.setIcon(appIcon);
+    splashwindow.setOverlayIcon(appIcon, appName);
     splashwindow.loadURL('file://' + __dirname + '/splash.html');
     contextMenu = Menu.buildFromTemplate([
         { label: 'Minimize', type: 'radio', role: 'minimize' },
+        { type: 'separator' },
+        { label: 'Exit', type: 'radio', role: 'quit' },
     ]);
     //for OS-X
     if (app.dock) {
-        app.dock.setIcon(app_icon);
+        app.dock.setIcon(appIcon);
         app.dock.setMenu(contextMenu);
     }
     Menu.setApplicationMenu(menu);
-    const appIcon = new Tray(app_icon);
-    appIcon.setToolTip('PDF Viewer');
-    appIcon.setContextMenu(contextMenu);
+    let tray = new Tray(trayIcon);
+    tray.setToolTip(appName);
+    tray.setContextMenu(contextMenu);
     //splash screen for 3 seconds
     setTimeout(createWindow, 3000);
 });
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') { app.quit(); }
+    if (!isOSX()) { app.quit(); }
 });
 app.on('activate', function () {
     // On OS X it's common to re-create a window in the app when the
@@ -181,9 +194,30 @@ app.on('activate', function () {
     if (mainWindow === null) { createWindow(); }
 });
 
+function resetWindow(window) {
+    if (window == null) {
+        return
+    }
+    window.webContents.closeDevTools();
+    window.webContents.clearHistory();
+    if (window.webContents.session) {
+        window.webContents.session.clearAuthCache();
+        window.webContents.session.clearCache();
+        window.webContents.session.clearHostResolverCache();
+        window.webContents.session.clearStorageData();
+        window.webContents.session.closeAllConnections();
+    }
+}
+
+function isOSX() {
+    return process.platform !== 'darwin';
+}
+
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({ minWidth: 400, minHeight: 300, width: 800, height: 600, show: false, icon: app_icon, webPreferences: { nodeIntegration: false, defaultEncoding: 'UTF-8' } });
+    mainWindow = new BrowserWindow({ accessibleTitle: appName, title: appName, icon: appIcon, minWidth: 400, minHeight: 300, width: 800, height: 600, show: false, webPreferences: { nodeIntegration: false, defaultEncoding: 'UTF-8' } });
+    mainWindow.setIcon(appIcon);
+    mainWindow.setOverlayIcon(appIcon, appName);
     resetWindow(mainWindow);
     mainWindow.on('closed', function () {
         mainWindow = null;
@@ -208,19 +242,4 @@ function createWindow() {
         mainWindow.maximize();
         mainWindow.show();
     });
-}
-
-function resetWindow(window) {
-    if (window == null) {
-        return
-    }
-    window.webContents.closeDevTools();
-    window.webContents.clearHistory();
-    if (window.webContents.session) {
-        window.webContents.session.clearAuthCache();
-        window.webContents.session.clearCache();
-        window.webContents.session.clearHostResolverCache();
-        window.webContents.session.clearStorageData();
-        window.webContents.session.closeAllConnections();
-    }
 }
