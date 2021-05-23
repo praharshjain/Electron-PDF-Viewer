@@ -1,6 +1,6 @@
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpraharshjain%2FElectron-PDF-Viewer.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpraharshjain%2FElectron-PDF-Viewer?ref=badge_shield)
 
-<img src="https://github.com/praharshjain/Electron-PDF-Viewer/blob/master/icon.ico" width="40">&nbsp;&nbsp;Electron-PDF-Viewer
+<img src="https://github.com/praharshjain/Electron-PDF-Viewer/blob/master/icon.png" width="40">&nbsp;&nbsp;Electron-PDF-Viewer
 ==========  
 
 PDF viewer created using [Electron framework](https://electron.atom.io) and [PDF.js](https://mozilla.github.io/pdf.js)  
