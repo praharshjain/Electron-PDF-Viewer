@@ -16,8 +16,8 @@
   "author": "Praharsh Jain",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^12.0.16",
-    "minimist": "^1.2.5",
-    "normalize-url": ">=4.5.1"
+    "electron": "^18.0.1",
+    "minimist": "^1.2.6",
+    "normalize-url": ">=7.0.3"
   }
 }
