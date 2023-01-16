@@ -18,6 +18,6 @@
   "devDependencies": {
     "electron": "^22.0.2",
     "minimist": "^1.2.7",
-    "normalize-url": ">=8.0.0"
+    "normalize-url": "^8.0.0"
   }
 }
