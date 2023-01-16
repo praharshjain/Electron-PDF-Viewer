@@ -86,9 +86,7 @@ const menuBarTemplate = [
     {
         label: 'Window',
         role: 'window',
-        submenu: [
-            { label: 'Minimize', accelerator: 'CmdOrCtrl+M', role: 'minimize' },
-        ]
+        submenu: [{ label: 'Minimize', accelerator: 'CmdOrCtrl+M', role: 'minimize' }]
     },
     {
         label: 'Help',
@@ -117,8 +115,8 @@ const contextMenuTemplate = [
 ]
 
 const menu = Menu.buildFromTemplate(menuBarTemplate);
-app.setAboutPanelOptions({ applicationName: config.appName, applicationVersion: config.appVersion, copyright: config.copyrightInfo, version: config.appVersion, credits: config.author, authors: [config.author], website: config.website, iconPath: config.iconPath });
 app.setName(config.appName);
+app.setAboutPanelOptions({ applicationName: config.appName, applicationVersion: config.appVersion, copyright: config.copyrightInfo, version: config.appVersion, credits: config.author, authors: [config.author], website: config.website, iconPath: config.iconPath });
 crashReporter.start({ productName: config.appName, companyName: config.author, submitURL: config.website, autoSubmit: false });
 forceSingleInstance();
 
@@ -188,7 +186,7 @@ function showSplashWindow() {
     splashwindow = new BrowserWindow({ accessibleTitle: config.appName, title: config.appName, icon: config.appIcon, width: 400, height: 300, center: true, resizable: false, movable: false, alwaysOnTop: true, skipTaskbar: true, frame: false });
     splashwindow.setIcon(appIcon);
     splashwindow.setOverlayIcon(appIcon, config.appName);
-    splashwindow.loadURL('file://' + __dirname + '/splash.html');
+    splashwindow.loadURL('file://' + __dirname + '/splash.html', options);
 }
 
 function hideSplashWindow() {
@@ -202,6 +200,12 @@ function createMainWindow() {
     mainWindow.setIcon(appIcon);
     mainWindow.setOverlayIcon(appIcon, config.appName);
     resetWindow(mainWindow);
+    mainWindow.on('close', function (e) {
+        mainWindow.webContents.clearHistory();
+        mainWindow.webContents.session.clearCache(function () {
+            mainWindow.destroy();
+        });
+    });
     mainWindow.on('closed', function () {
         mainWindow = null;
         app.quit();
@@ -223,6 +227,7 @@ function createMainWindow() {
         hideSplashWindow();
         mainWindow.maximize();
         mainWindow.show();
+        mainWindow.focus();
     });
 }
 
