@@ -15,8 +15,10 @@
   ],
   "author": "Praharsh Jain",
   "license": "MIT",
+  "website":"https://praharsh.tech",
+  "copyrightInfo":"Copyright © Praharsh Jain, 2023",
   "devDependencies": {
-    "electron": "^22.0.2",
+    "electron": "^22.0.3",
     "minimist": "^1.2.7",
     "normalize-url": "^8.0.0"
   }
