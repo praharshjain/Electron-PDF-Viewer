@@ -2,9 +2,11 @@
   "name": "Electron-PDF-Viewer",
   "version": "1.0.0",
   "description": "A pdf viewer built with electron",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "cp package.json config.json;electron .",
+    "pack": "cp package.json app/config.json;electron-builder --dir",
+    "dist": "cp package.json app/config.json;electron-builder"
   },
   "repository": "https://github.com/praharshjain/Electron-PDF-Viewer",
   "keywords": [
@@ -15,11 +17,31 @@
   ],
   "author": "Praharsh Jain",
   "license": "MIT",
-  "website":"https://praharsh.tech",
-  "copyrightInfo":"Copyright © Praharsh Jain, 2023",
+  "website": "https://praharsh.tech",
+  "copyright": "Copyright © 2023 Praharsh Jain",
   "devDependencies": {
-    "electron": "^22.0.3",
+    "electron": "^23.0.0",
+    "electron-builder": "^23.6.0",
     "minimist": "^1.2.7",
     "normalize-url": "^8.0.0"
+  },
+  "build": {
+    "appId": "com.electron.${name}",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": "default",
+      "icon": "icon.png",
+      "type": "distribution"
+    },
+    "dmg": {
+      "icon": "app/icon.png"
+    },
+    "fileAssociations": {
+      "ext": "pdf",
+      "name": "PDF",
+      "description": "Printable Document Format",
+      "mimeType": "pdf",
+      "role": "Viewer"
+    }
   }
 }

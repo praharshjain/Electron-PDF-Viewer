@@ -1,0 +1,11 @@
+version: 1.0.0
+files:
+  - url: Electron-PDF-Viewer-1.0.0-arm64-mac.zip
+    sha512: tJT9JCLBP9Lw6nzPGNGmu44WhDHFVvFTaf2vSBZdAJp1L6vKqjGWykb58tmVIW+A12tvSEEzlNnriUxjimtUpA==
+    size: 85502450
+  - url: Electron-PDF-Viewer-1.0.0-arm64.dmg
+    sha512: aptUpDSZ8bQTCfCvPZa5OqqFd1cr5MFmz3EAKf/z9FnD9FK54f1s96xnfyaJCLAUScSNYdGGDqGxq5p2Yt6X1Q==
+    size: 88513850
+path: Electron-PDF-Viewer-1.0.0-arm64-mac.zip
+sha512: tJT9JCLBP9Lw6nzPGNGmu44WhDHFVvFTaf2vSBZdAJp1L6vKqjGWykb58tmVIW+A12tvSEEzlNnriUxjimtUpA==
+releaseDate: '2023-02-07T11:23:03.249Z'
