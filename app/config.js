@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 const data = require(path.join(__dirname, '../package.json'));
 module.exports = {
