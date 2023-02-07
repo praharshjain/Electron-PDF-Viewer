@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const data = require(path.join(__dirname, 'config.json'));
+const data = require(path.join(__dirname, '../package.json'));
 module.exports = {
     appName: data.name,
     appVersion: data.version,

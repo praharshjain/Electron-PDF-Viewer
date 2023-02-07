@@ -4,9 +4,9 @@
   "description": "A pdf viewer built with electron",
   "main": "app/main.js",
   "scripts": {
-    "start": "cp package.json config.json;electron .",
-    "pack": "cp package.json app/config.json;electron-builder --dir",
-    "dist": "cp package.json app/config.json;electron-builder"
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": "https://github.com/praharshjain/Electron-PDF-Viewer",
   "keywords": [
