@@ -1,7 +1,7 @@
 const path = require('path');
 const data = require(path.join(__dirname, '../package.json'));
 module.exports = {
-    appName: data.name,
+    appName: data.productName,
     appVersion: data.version,
     appDescription: data.description,
     copyrightInfo: data.copyright,

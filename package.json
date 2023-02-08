@@ -1,5 +1,6 @@
 {
-  "name": "Electron-PDF-Viewer",
+  "name": "electron-pdf-viewer",
+  "productName": "Electron-PDF-Viewer",
   "version": "1.0.0",
   "description": "A pdf viewer built with electron",
   "main": "app/main.js",
@@ -25,8 +26,11 @@
     "minimist": "^1.2.7",
     "normalize-url": "^8.0.0"
   },
+  "dependencies": {},
   "build": {
-    "appId": "com.electron.${name}",
+    "appId": "com.praharsh.${name}",
+    "compression": "maximum",
+    "copyright": "Copyright © Praharsh Jain, 2023",
     "mac": {
       "category": "public.app-category.utilities",
       "target": "default",
@@ -40,7 +44,7 @@
       "ext": "pdf",
       "name": "PDF",
       "description": "Printable Document Format",
-      "mimeType": "pdf",
+      "mimeType": "application/pdf",
       "role": "Viewer"
     }
   }
