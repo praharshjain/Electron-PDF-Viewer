@@ -5,6 +5,8 @@
 
 PDF viewer created using [Electron framework](https://electron.atom.io) and [PDF.js](https://mozilla.github.io/pdf.js)  
 
+Checkout a more versatile file viewer - https://github.com/praharshjain/Vudit-Desktop
+
 Usage
 ----------------
 
