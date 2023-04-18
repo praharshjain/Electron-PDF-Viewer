@@ -22,7 +22,7 @@
   "copyright": "Copyright © 2023 Praharsh Jain",
   "devDependencies": {
     "electron": "^23.0.0",
-    "electron-builder": "^23.6.0",
+    "electron-builder": "^24.2.1",
     "minimist": "^1.2.7",
     "normalize-url": "^8.0.0"
   },
