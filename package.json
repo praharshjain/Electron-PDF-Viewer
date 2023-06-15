@@ -23,7 +23,7 @@
   "devDependencies": {
     "electron": "^23.0.0",
     "electron-builder": "^23.6.0",
-    "minimist": "^1.2.7",
+    "minimist": "^1.2.8",
     "normalize-url": "^8.0.0"
   },
   "dependencies": {},
